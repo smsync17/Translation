@@ -1,12 +1,23 @@
 import whisper
+import string
 
 # Load the model
 model = whisper.load_model("base")
 
 # Transcribe test file
-result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test_6.m4a", language="de")
+result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test.m4a", language="en")
 # language will transcript different languages, "de" = german, "ar" = arabic, "it" = italian, etc.
 # translate is meant to translate it back to english, but it kinda sucks
 
+no_punc = str.maketrans("", "", string.punctuation)
+# "maketrans" creates a mapping to remove all punctuation
+wordset = result["text"]
+words = wordset.translate(no_punc)
+# now all the punctuation is removed
+words = words.lower().split()
+
+
+# print (result)
+
 # Print transcription
-print(result["text"])
+print(words)
