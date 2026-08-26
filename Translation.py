@@ -1,5 +1,6 @@
 import whisper
 import string
+from rapidfuzz import fuzz
 
 # Load the model
 model = whisper.load_model("base")
@@ -16,6 +17,10 @@ words = wordset.translate(no_punc)
 # now all the punctuation is removed
 words = words.lower().split()
 
+name = "Samrawi"
+altered = "Samwawi"
+
+print(f"Similarity: {fuzz.ratio(name, altered)}")
 
 # print (result)
 
