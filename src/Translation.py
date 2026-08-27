@@ -22,13 +22,24 @@ altered = "Kurtis Pykes K D"
 
 print(f"Similarity: {fuzz.ratio(name, altered)}")
 print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
-print(f"Sort Similarity: {fuzz.token_sort_ratio(name, altered)}")
-print(f"Set Similarity: {fuzz.token_set_ratio(name, altered)}")
+# print(f"Sort Similarity: {fuzz.token_sort_ratio(name, altered)}")
+# print(f"Set Similarity: {fuzz.token_set_ratio(name, altered)}")
 
 
+dictionary = ["toffee", "i am", "yo", "proudly"]
+
+count = 0
+# Comparing every transcribed word with dictionary and applying fuzz ratio
+for word in range(len(words)):
+    for dict in range(len(dictionary)):
+        accuracy = fuzz.ratio(words[word], dictionary[dict])
+        if accuracy > 50:
+            count = count + 1
+            # prints transcribed word with its dictionary counterpart
+            print(f"{words[word]} and {dictionary[dict]}")
 
 
-# print (result)
-
+# Prints how many words within transcription are similar to dictionary
+print(count)
 # Print transcription
-# print(words)
+print(words)
