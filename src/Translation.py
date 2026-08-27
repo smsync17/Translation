@@ -17,8 +17,8 @@ words = wordset.translate(no_punc)
 # now all the punctuation is removed
 words = words.lower().split()
 
-name = "Samrawi Skin Samrawi"
-altered = "Samrawi Samrawi Skin Damn"
+name = "Kurtis Pykes"
+altered = "Kurtis Pykes K D"
 
 print(f"Similarity: {fuzz.ratio(name, altered)}")
 print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
