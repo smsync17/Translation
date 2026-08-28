@@ -28,6 +28,14 @@ print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
 
 dictionary = ["toffee", "i am", "yo", "proudly"]
 
+unique = []
+for word in words:
+    if word not in unique:
+        unique.append(word)
+# and then somehow count the frequency of each unique word
+    # and a separate counter for fuzz ratio-ed words
+
+
 count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
 for word in range(len(words)):
@@ -39,7 +47,10 @@ for word in range(len(words)):
             print(f"{words[word]} and {dictionary[dict]}")
 
 
+
 # Prints how many words within transcription are similar to dictionary
 print(count)
 # Print transcription
 print(words)
+
+print(unique)
