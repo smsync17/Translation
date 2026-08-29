@@ -18,23 +18,15 @@ words = wordset.translate(no_punc)
 # now all the punctuation is removed
 words = words.lower().split()
 
-name = "Kurtis Pykes"
-altered = "Kurtis Pykes K D"
-
-print(f"Similarity: {fuzz.ratio(name, altered)}")
-print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
+# name = "Kurtis Pykes"
+# altered = "Kurtis Pykes K D"
+# print(f"Similarity: {fuzz.ratio(name, altered)}")
+# print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
 # print(f"Sort Similarity: {fuzz.token_sort_ratio(name, altered)}")
 # print(f"Set Similarity: {fuzz.token_set_ratio(name, altered)}")
 
 
 dictionary = ["toffee", "i am", "yo", "proudly"]
-
-unique = []
-for word in words:
-    if word not in unique:
-        unique.append(word)
-# and then somehow count the frequency of each unique word
-    # and a separate counter for fuzz ratio-ed words
 
 
 count = 0
@@ -47,13 +39,13 @@ for word in range(len(words)):
             # prints transcribed word with its dictionary counterpart
             print(f"{words[word]} and {dictionary[dict]}")
 
-unique_frequency = Counter(words)
-
+unique_frequency = Counter(words).most_common(2)
+# and a separate counter for fuzz ratio-ed words
 
 # Prints how many words within transcription are similar to dictionary
 print(count)
 # Print transcription
 print(words)
 
-print(unique)
+# Currently prints the two most common used words
 print(unique_frequency)
