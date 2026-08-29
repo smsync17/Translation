@@ -1,6 +1,7 @@
 import whisper
 import string
 from rapidfuzz import fuzz
+from collections import Counter
 
 # Load the model
 model = whisper.load_model("base")
@@ -46,6 +47,7 @@ for word in range(len(words)):
             # prints transcribed word with its dictionary counterpart
             print(f"{words[word]} and {dictionary[dict]}")
 
+unique_frequency = Counter(words)
 
 
 # Prints how many words within transcription are similar to dictionary
@@ -54,3 +56,4 @@ print(count)
 print(words)
 
 print(unique)
+print(unique_frequency)
