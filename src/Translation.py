@@ -25,21 +25,23 @@ words = words.lower().split()
 # print(f"Sort Similarity: {fuzz.token_sort_ratio(name, altered)}")
 # print(f"Set Similarity: {fuzz.token_set_ratio(name, altered)}")
 
-
-dictionary = ["toffee", "i am", "yo", "proudly"]
-
+pure_dict = open("cleaned_wordlist.txt")
+pure = pure_dict.read().split()
+dict_counter = []
 
 count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
 for word in range(len(words)):
-    for dict in range(len(dictionary)):
-        accuracy = fuzz.ratio(words[word], dictionary[dict])
-        if accuracy > 50:
+    for dict in range(len(pure)):
+        accuracy = fuzz.ratio(words[word], pure[dict])
+        if accuracy > 80:
             count = count + 1
             # prints transcribed word with its dictionary counterpart
-            print(f"{words[word]} and {dictionary[dict]}")
+            dict_counter.append(pure[dict])
+            print(f"{words[word]} and {pure[dict]}")
 
-unique_frequency = Counter(words).most_common(2)
+unique_frequency = Counter(words).most_common(3)
+second_pot = Counter(dict_counter).most_common(10)
 # and a separate counter for fuzz ratio-ed words
 
 # Prints how many words within transcription are similar to dictionary
@@ -49,3 +51,4 @@ print(words)
 
 # Currently prints the two most common used words
 print(unique_frequency)
+print(second_pot)
