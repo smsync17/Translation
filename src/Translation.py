@@ -39,9 +39,8 @@ count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
 for word in range(len(words)):
     for dict in range(len(pure)):
-        accuracy = fuzz.ratio(refined.phonetics(words[word]), refined.phonetics(pure[dict]))
-        # accuracy = fuzz.ratio(metaphone.phonetics(words[word]), metaphone.phonetics(pure[dict]))
-        if accuracy > 99:
+        # if metaphone.phonetics(words[word])== metaphone.phonetics(pure[dict])
+        if refined.phonetics(words[word]) == refined.phonetics(pure[dict]):
             count = count + 1
             # prints transcribed word with its dictionary counterpart
             dict_counter.append(pure[dict])
