@@ -8,6 +8,7 @@ model = whisper.load_model("base")
 
 # Transcribe test file
 result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test.m4a", language="en")
+# result = model.transcribe("C:/Users/SM_Ga/Documents/Projects/Translation/tests/Mac_Miller_Audio_Test.m4a", language="en")
 # language will transcript different languages, "de" = german, "ar" = arabic, "it" = italian, etc.
 # translate is meant to translate it back to english, but it kinda sucks
 
@@ -18,16 +19,15 @@ words = wordset.translate(no_punc)
 # now all the punctuation is removed
 words = words.lower().split()
 
-# name = "Kurtis Pykes"
-# altered = "Kurtis Pykes K D"
-# print(f"Similarity: {fuzz.ratio(name, altered)}")
-# print(f"Partial Similarity: {fuzz.partial_ratio(name, altered)}")
-# print(f"Sort Similarity: {fuzz.token_sort_ratio(name, altered)}")
-# print(f"Set Similarity: {fuzz.token_set_ratio(name, altered)}")
+
+
 
 pure_dict = open("cleaned_wordlist.txt")
 pure = pure_dict.read().split()
 dict_counter = []
+
+
+
 
 count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
@@ -43,6 +43,11 @@ for word in range(len(words)):
 unique_frequency = Counter(words).most_common(3)
 second_pot = Counter(dict_counter).most_common(10)
 # and a separate counter for fuzz ratio-ed words
+
+
+
+
+
 
 # Prints how many words within transcription are similar to dictionary
 print(count)
