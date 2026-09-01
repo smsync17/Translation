@@ -10,7 +10,7 @@ from pyphonetics import RefinedSoundex
 model = whisper.load_model("base")
 
 # Transcribe test file
-result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test.m4a", language="en")
+result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test_7.m4a", language="en")
 # result = model.transcribe("C:/Users/SM_Ga/Documents/Projects/Translation/tests/Mac_Miller_Audio_Test.m4a", language="en")
 # language will transcript different languages, "de" = german, "ar" = arabic, "it" = italian, etc.
 # translate is meant to translate it back to english, but it kinda sucks
@@ -32,7 +32,9 @@ pure_dict = open("cleaned_wordlist.txt")
 pure = pure_dict.read().split()
 dict_counter = []
 
-
+# print refine check all of these, then remove duplicates
+hesitations = ["um","uh","umm","uhh","erm","err"]
+confused = ["huh", "ehh", "excuse me"]
 
 
 count = 0
@@ -64,5 +66,10 @@ print(words)
 print(unique_frequency)
 print(second_pot)
 
-print(refined.phonetics('timeline'))
-print(refined.phonetics('timeframe'))
+print(refined.phonetics('hmm'))
+print(refined.phonetics('hmmm'))
+print(refined.phonetics('eh'))
+print(refined.phonetics('huh'))
+print(refined.phonetics('um'))
+print(refined.phonetics('err'))
+print(refined.phonetics('excuse me'))
