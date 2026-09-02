@@ -36,16 +36,34 @@ dict_counter = []
 hesitations = ["um","uh","umm","uhh","erm","err"]
 confused = ["huh", "ehh", "excuse me"]
 
+ref_hes = []
+ref_con = []
+
+for hes in hesitations:
+    ref_hes.append(refined.phonetics(hes))
+for con in confused:
+    ref_con.append(refined.phonetics(con))
+
+check = 0
 
 count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
 for word in range(len(words)):
     for dict in range(len(pure)):
         # if metaphone.phonetics(words[word])== metaphone.phonetics(pure[dict])
-        if refined.phonetics(words[word]) == refined.phonetics(pure[dict]):
+        ref_word = refined.phonetics(words[word])
+        ref_dict = refined.phonetics(pure[dict])
+        if ref_word == ref_dict:
             count = count + 1
-            # prints transcribed word with its dictionary counterpart
-            dict_counter.append(pure[dict])
+            if ref_word in ref_hes:
+                dict_counter.append("*hesitation*")
+                check = 1
+            else:
+                if ref_word in ref_con:
+                    dict_counter.append("*confused*")
+                else:
+                    # prints transcribed word with its dictionary counterpart
+                    dict_counter.append(pure[dict])
             print(f"{words[word]} and {pure[dict]}")
 
 unique_frequency = Counter(words).most_common(3)
@@ -66,10 +84,12 @@ print(words)
 print(unique_frequency)
 print(second_pot)
 
-print(refined.phonetics('hmm'))
-print(refined.phonetics('hmmm'))
-print(refined.phonetics('eh'))
-print(refined.phonetics('huh'))
-print(refined.phonetics('um'))
-print(refined.phonetics('err'))
-print(refined.phonetics('excuse me'))
+# print(refined.phonetics('hmm'))
+# print(refined.phonetics('hmmm'))
+# print(refined.phonetics('eh'))
+# print(refined.phonetics('huh'))
+# print(refined.phonetics('um'))
+# print(refined.phonetics('err'))
+# print(refined.phonetics('excuse me'))
+if check:
+    print("we in")
