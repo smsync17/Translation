@@ -45,7 +45,6 @@ for con in confused:
     ref_con.append(refined.phonetics(con))
 
 check = 0
-
 count = 0
 # Comparing every transcribed word with dictionary and applying fuzz ratio
 for word in range(len(words)):
@@ -65,9 +64,15 @@ for word in range(len(words)):
                     else:
                         # prints transcribed word with its dictionary counterpart
                         dict_counter.append(pure[dict])
-                print(f"{words[word]} and {pure[dict]}")
+                # print(f"{words[word]} and {pure[dict]}")
         except:
             pass
+
+
+n_gram = []
+filtered_counts = {word: count for word, count in Counter(words).items() if count >= 7}
+
+
 
 unique_frequency = Counter(words).most_common(3)
 second_pot = Counter(dict_counter).most_common(10)
@@ -94,5 +99,7 @@ print(second_pot)
 # print(refined.phonetics('um'))
 # print(refined.phonetics('err'))
 # print(refined.phonetics('excuse me'))
-if check:
-    print("we in")
+# if check:
+#     print("we in")
+
+print(filtered_counts)
