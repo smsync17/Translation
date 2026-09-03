@@ -10,7 +10,7 @@ from pyphonetics import RefinedSoundex
 model = whisper.load_model("base")
 
 # Transcribe test file
-result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test_7.m4a", language="en")
+result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Mac_Miller_Trimmed.m4a", language="en")
 # result = model.transcribe("C:/Users/SM_Ga/Documents/Projects/Translation/tests/Mac_Miller_Audio_Test.m4a", language="en")
 # language will transcript different languages, "de" = german, "ar" = arabic, "it" = italian, etc.
 # translate is meant to translate it back to english, but it kinda sucks
@@ -51,20 +51,23 @@ count = 0
 for word in range(len(words)):
     for dict in range(len(pure)):
         # if metaphone.phonetics(words[word])== metaphone.phonetics(pure[dict])
-        ref_word = refined.phonetics(words[word])
-        ref_dict = refined.phonetics(pure[dict])
-        if ref_word == ref_dict:
-            count = count + 1
-            if ref_word in ref_hes:
-                dict_counter.append("*hesitation*")
-                check = 1
-            else:
-                if ref_word in ref_con:
-                    dict_counter.append("*confused*")
+        try:
+            ref_word = refined.phonetics(words[word])
+            ref_dict = refined.phonetics(pure[dict])
+            if ref_word == ref_dict:
+                count = count + 1
+                if ref_word in ref_hes:
+                    dict_counter.append("*hesitation*")
+                    check = 1
                 else:
-                    # prints transcribed word with its dictionary counterpart
-                    dict_counter.append(pure[dict])
-            print(f"{words[word]} and {pure[dict]}")
+                    if ref_word in ref_con:
+                        dict_counter.append("*confused*")
+                    else:
+                        # prints transcribed word with its dictionary counterpart
+                        dict_counter.append(pure[dict])
+                print(f"{words[word]} and {pure[dict]}")
+        except:
+            pass
 
 unique_frequency = Counter(words).most_common(3)
 second_pot = Counter(dict_counter).most_common(10)
