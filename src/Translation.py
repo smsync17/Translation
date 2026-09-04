@@ -68,10 +68,19 @@ for word in range(len(words)):
         except:
             pass
 
-
-n_gram = []
+temp_count = []
+bi_gram = []
 filtered_counts = {word: count for word, count in Counter(words).items() if count >= 7}
-
+for source in filtered_counts:
+    for word in range(len(words)):
+        if source == words[word]:
+            try:
+                temp_count.append(source + " " + words[word+1])
+            except:
+                pass
+    filtered_bi_gram = {word: count for word, count in Counter(temp_count).items() if count >= 3}
+    temp_count = []
+    bi_gram.append(filtered_bi_gram)
 
 
 unique_frequency = Counter(words).most_common(3)
@@ -102,4 +111,5 @@ print(second_pot)
 # if check:
 #     print("we in")
 
-print(filtered_counts)
+print(f"the filtered {filtered_counts}")
+print(f"the bigrams {bi_gram}")
