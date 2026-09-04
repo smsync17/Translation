@@ -80,7 +80,8 @@ for source in filtered_counts:
                 pass
     filtered_bi_gram = {word: count for word, count in Counter(temp_count).items() if count >= 3}
     temp_count = []
-    bi_gram.append(filtered_bi_gram)
+    if filtered_bi_gram:
+        bi_gram.append(filtered_bi_gram)
 
 
 unique_frequency = Counter(words).most_common(3)
