@@ -5,6 +5,7 @@ from collections import Counter
 from pyphonetics import Metaphone
 from pyphonetics import Soundex
 from pyphonetics import RefinedSoundex
+from deep_translator import DeeplTranslator
 
 # Load the model
 model = whisper.load_model("base")
@@ -70,7 +71,7 @@ for word in range(len(words)):
 
 temp_count = []
 bi_gram = []
-filtered_counts = {word: count for word, count in Counter(words).items() if count >= 7}
+filtered_counts = {word: count for word, count in Counter(words).items() if count >= 5}
 for source in filtered_counts:
     for word in range(len(words)):
         if source == words[word]:
@@ -114,3 +115,6 @@ print(second_pot)
 
 print(f"the filtered {filtered_counts}")
 print(f"the bigrams {bi_gram}")
+
+translation = DeeplTranslator(source='en', target='ar').translate(bi_gram)
+print(f"We got: {translation}")
