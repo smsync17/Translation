@@ -14,7 +14,8 @@ authors = [
 dependencies = [
     "openai-whisper>=20250625",
     "RapidFuzz>=3.14.5",
-    "pyphonetics=>0.5.3"
+    "pyphonetics=>0.5.3",
+    "deep-translator=>1.11.4"
 ]
 
 [project.urls]

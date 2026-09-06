@@ -5,7 +5,8 @@ from collections import Counter
 from pyphonetics import Metaphone
 from pyphonetics import Soundex
 from pyphonetics import RefinedSoundex
-from deep_translator import DeeplTranslator
+from deep_translator import MyMemoryTranslator
+import requests
 
 # Load the model
 model = whisper.load_model("base")
@@ -116,5 +117,35 @@ print(second_pot)
 print(f"the filtered {filtered_counts}")
 print(f"the bigrams {bi_gram}")
 
-translation = DeeplTranslator(source='en', target='ar').translate(bi_gram)
-print(f"We got: {translation}")
+
+
+def translate_text(text: str, langpair: str = "en|ar") -> str:
+    url = "https://api.mymemory.translated.net/get"
+
+    params = {"q": text, "langpair": langpair, "de": "smsync17@gmail.com"}
+
+    try:
+        # Send HTTP GET request
+        response = requests.get(url, params=params, timeout=10)
+
+        # Check if the HTTP request was successful (status code 200)
+        response.raise_for_status()
+
+        # Parse the JSON response
+        data = response.json()
+
+        # Safely extract the translated text from the nested JSON object
+        translate_text = data.get("responseData", {}).get("translatedText")
+
+        if translate_text:
+            return translate_text
+        else:
+            return "Error: Translation field not found in response"
+        
+    except requests.exceptions.HTTPError as http_err:
+        return f"HTTP error occurred: {http_err}"
+    except requests.exceptions.RequestException as err:
+        return f"An error occurred: {err}"
+
+
+
