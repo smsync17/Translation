@@ -5,6 +5,8 @@ from collections import Counter
 from pyphonetics import Metaphone
 from pyphonetics import Soundex
 from pyphonetics import RefinedSoundex
+from deep_translator import MyMemoryTranslator
+import requests
 
 # Load the model
 model = whisper.load_model("base")
@@ -70,7 +72,7 @@ for word in range(len(words)):
 
 temp_count = []
 bi_gram = []
-filtered_counts = {word: count for word, count in Counter(words).items() if count >= 7}
+filtered_counts = {word: count for word, count in Counter(words).items() if count >= 5}
 for source in filtered_counts:
     for word in range(len(words)):
         if source == words[word]:
@@ -114,3 +116,37 @@ print(second_pot)
 
 print(f"the filtered {filtered_counts}")
 print(f"the bigrams {bi_gram}")
+
+
+
+def translate_text(text: str, langpair: str = "en|ar") -> str:
+    url = "https://api.mymemory.translated.net/get"
+
+    params = {"q": text, "langpair": langpair, "de": "smsync17@gmail.com"}
+    # "de": "your.email@example.com"
+
+    try:
+        # Send HTTP GET request
+        response = requests.get(url, params=params, timeout=10)
+
+        # Check if the HTTP request was successful (status code 200)
+        response.raise_for_status()
+
+        # Parse the JSON response
+        data = response.json()
+
+        # Safely extract the translated text from the nested JSON object
+        translate = data.get("responseData", {}).get("translatedText")
+
+        if translate:
+            return translate
+        else:
+            return "Error: Translation field not found in response"
+        
+    except requests.exceptions.HTTPError as http_err:
+        return f"HTTP error occurred: {http_err}"
+    except requests.exceptions.RequestException as err:
+        return f"An error occurred: {err}"
+
+
+print(translate_text("hello"))
