@@ -123,6 +123,7 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
     url = "https://api.mymemory.translated.net/get"
 
     params = {"q": text, "langpair": langpair, "de": "smsync17@gmail.com"}
+    # "de": "your.email@example.com"
 
     try:
         # Send HTTP GET request
@@ -135,10 +136,10 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
         data = response.json()
 
         # Safely extract the translated text from the nested JSON object
-        translate_text = data.get("responseData", {}).get("translatedText")
+        translate = data.get("responseData", {}).get("translatedText")
 
-        if translate_text:
-            return translate_text
+        if translate:
+            return translate
         else:
             return "Error: Translation field not found in response"
         
@@ -148,4 +149,4 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
         return f"An error occurred: {err}"
 
 
-
+print(translate_text("hello"))
