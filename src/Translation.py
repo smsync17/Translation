@@ -12,6 +12,7 @@ import requests
 model = whisper.load_model("base")
 
 # Transcribe test file
+# result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test_7.m4a", language="en")
 result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Mac_Miller_Trimmed.m4a", language="en")
 # result = model.transcribe("C:/Users/SM_Ga/Documents/Projects/Translation/tests/Mac_Miller_Audio_Test.m4a", language="en")
 # language will transcript different languages, "de" = german, "ar" = arabic, "it" = italian, etc.
@@ -127,7 +128,7 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
 
     try:
         # Send HTTP GET request
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, timeout=30)
 
         # Check if the HTTP request was successful (status code 200)
         response.raise_for_status()
@@ -149,4 +150,12 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
         return f"An error occurred: {err}"
 
 
-print(translate_text("hello"))
+for dictionary in bi_gram:
+    for key in dictionary:
+        print(f"{key} translates to {translate_text(key)}")
+
+
+
+
+
+
