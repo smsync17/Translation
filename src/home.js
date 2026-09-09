@@ -1,0 +1,1 @@
+alert("Hello! My external JavaScript is working!");
