@@ -1,12 +1,11 @@
 import whisper
 import string
-from rapidfuzz import fuzz
+# from rapidfuzz import fuzz
 from collections import Counter
-from pyphonetics import Metaphone
-from pyphonetics import Soundex
 from pyphonetics import RefinedSoundex
 from deep_translator import MyMemoryTranslator
 import requests
+import json
 
 # Load the model
 model = whisper.load_model("base")
@@ -149,13 +148,17 @@ def translate_text(text: str, langpair: str = "en|ar") -> str:
     except requests.exceptions.RequestException as err:
         return f"An error occurred: {err}"
 
+trans = {}
 
 for dictionary in bi_gram:
     for key in dictionary:
         print(f"{key} translates to {translate_text(key)}")
+        trans[key] = translate_text(key)
 
 
+translated_json  = json.dumps(trans)
 
 
-
+with open("translated.json", "w") as f:
+    f.write(translated_json)
 
