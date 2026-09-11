@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- python -m http.server 8000 -->
   <link rel="stylesheet" href="styles.css">
   <script src="home.js"></script>
 </head>
@@ -18,7 +19,24 @@ document.getElementById("demo").innerHTML = "wow";
 
 <button onclick="increaseCount()">+</button>
 <button onclick="decreaseCount()">-</button>
+<button onclick="resetCount()">Reset</button>
+<button onclick="saveCount()">Save</button>
+<button onclick="loadCount()">Load</button>
 
+<table class="container">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr>
+    <td>Son</td>
+    <td>Naldo</td>
+  </tr>
+  <tr>
+    <td>Ikenna</td>
+    <td>Richard</td>
+  </tr>
+</table>
 
 </body>
 </html>
