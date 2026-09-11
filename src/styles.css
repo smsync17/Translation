@@ -19,5 +19,16 @@ button {
     align-items: center;
     font-family: verdana;
     color: rgb(79, 42, 0);
-    background: rgb(134, 223, 255)
+    background: rgb(134, 223, 255);
+}
+
+table, th, td {
+  border: 2px solid green;
+  background: rgb(134, 223, 255);
+  color: rgb(80, 9, 57);
+}
+
+.container {
+  display: grid;
+  flex-direction: row;
 }
