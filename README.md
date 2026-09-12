@@ -5,3 +5,4 @@ Attempting to create a program that:
   Apply a program that reduces count due to words surrounding (phrases)
   Merge similar words and add up their counts
   Apply translation to most common words and phrases
+  Create a website using HTML, CSS AND JavaScript
