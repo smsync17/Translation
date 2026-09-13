@@ -63,8 +63,22 @@ loadJson("translated.json");
 function myDisplayer(data) {
     const original = Object.keys(data);
     const newer = Object.values(data);
-    console.log(original)
-    console.log(newer)
+    
+     var tbody = document.getElementById('tbody');
+    
+    // Clear any previous table data if needed
+    tbody.innerHTML = ""; 
+
+    // 2. Loop through the data values to create your row
+    var tr = "<tr>";
+    for (var i = 0; i < newer.length; i++) {
+        // Wrap each value inside table data (td) tags
+        tr += "<td>" + newer[i] + "</td>";
+    }
+    tr += "</tr>";
+
+    // 3. Append the complete row to the table body
+    tbody.innerHTML += tr;
 }
 
 
