@@ -64,21 +64,23 @@ function myDisplayer(data) {
     const original = Object.keys(data);
     const newer = Object.values(data);
     
-     var tbody = document.getElementById('tbody');
+    var tbody = document.getElementById('tbody');
     
-    // Clear any previous table data if needed
     tbody.innerHTML = ""; 
 
-    // 2. Loop through the data values to create your row
-    var tr = "<tr>";
+    // Loop through to create  row
+    var tr = "";
     for (var i = 0; i < newer.length; i++) {
-        // Wrap each value inside table data (td) tags
+        tr = "";
+        tr += "<tr>";
+        tr += "<td>" + original[i] + "</td>";
         tr += "<td>" + newer[i] + "</td>";
+        tr += "</tr>";
+        tbody.innerHTML += tr;
     }
-    tr += "</tr>";
+    
 
-    // 3. Append the complete row to the table body
-    tbody.innerHTML += tr;
+    
 }
 
 
