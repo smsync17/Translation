@@ -23,12 +23,22 @@ button {
 }
 
 table, th, td {
-  border: 2px solid green;
+  border: 4px solid green;
   background: rgb(134, 223, 255);
   color: rgb(80, 9, 57);
+  font-size: 25px;
 }
 
 .container {
   display: grid;
-  flex-direction: row;
+  grid-template-columns: auto auto auto;
+  background-color: rgb(17, 61, 89);
+  padding: 10px;
+}
+.container div {
+  background-color: rgb(12, 35, 50);
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
 }
