@@ -2,7 +2,7 @@ let count = 0;
 let pressed = false;
 
 
-alert("Hello! My external JavaScript is working!" + count);
+alert("Hello! My external JavaScript is working!");
 
 function updateCount(){
     document.getElementById("count").innerHTML = count;
