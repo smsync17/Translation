@@ -1,9 +1,15 @@
 from flask import Flask, request, flash, redirect, url_for
+import os
 
-UPLOAD_FOLDER = '/path/to/the/uploads'
+# Where to go after running http://127.0.0.1:5000/upload
+UPLOAD_FOLDER = 'C:/Users/SM_Ga/Documents/Projects/Translation/uploads'
 ALLOWED_EXTENSIONS = {'mp4', 'mp3', 'm4a'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -15,12 +21,13 @@ def upload_file():
         file = request.files['file']
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
+        filename = file.filename
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file:
+        if file and allowed_file(file.filename):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download file', name=filename))
+            return redirect(url_for('upload_file', name=filename))
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -31,7 +38,5 @@ def upload_file():
     </form>
     '''
 
-
-Flask.request.files['file'].save()
 
 
