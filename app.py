@@ -1,5 +1,6 @@
 from flask import Flask, request, flash, redirect, url_for
 import os
+import Translation
 
 # Where to go after running http://127.0.0.1:5000/upload
 UPLOAD_FOLDER = 'C:/Users/SM_Ga/Documents/Projects/Translation/uploads'
@@ -26,8 +27,9 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('upload_file', name=filename))
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+            return Translation.process_audio(file_path)
     return '''
     <!doctype html>
     <title>Upload new File</title>
