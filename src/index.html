@@ -31,8 +31,11 @@
 </div>
 <div class="container">
   <div>
-    <textarea>Type</textarea>
-    <button onclick="saveCount()">Run</button>
+    <form onsubmit="calling(event)">
+      <label>Select file to upload</label>
+      <input type="file">
+      <button type="submit">Convert</button>
+    </form>
   </div>
   <div>
     <table>
