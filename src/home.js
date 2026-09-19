@@ -58,7 +58,7 @@ async function loadJson(file){
     myDisplayer(data);
 }
 
-loadJson("translated.json");
+// loadJson("translated.json");
 
 function myDisplayer(data) {
     const original = Object.keys(data);
@@ -81,6 +81,21 @@ function myDisplayer(data) {
     
 
     
+}
+
+async function calling(event){
+    event.preventDefault();
+    var input = document.querySelector('input[type="file"]');
+    var data = new FormData();
+    data.append('file', input.files[0]);
+
+    const response = await fetch('/upload', {
+        method: 'POST',
+        body: data
+    });
+
+    const json_data = await response.json();
+    myDisplayer(json_data);
 }
 
 
