@@ -1,5 +1,7 @@
 from flask import Flask, request, flash, redirect, url_for
 import os
+import sys
+sys.path.insert(0, './src')
 import Translation
 
 # Where to go after running http://127.0.0.1:5000/upload
