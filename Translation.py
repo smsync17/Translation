@@ -152,12 +152,13 @@ def process_audio(audio_file_path):
             print(f"{key} translates to {translate_text(key)}")
             trans[key] = translate_text(key)
 
+    cleaned = {k: (v.replace('#', '') if isinstance(v, str) else v) for k, v in trans.items()}
 
-    translated_json  = json.dumps(trans)
+    translated_json  = json.dumps(cleaned)
 
 
     with open("translated.json", "w") as f:
         f.write(translated_json)
 
-    return trans
+    return cleaned
 
