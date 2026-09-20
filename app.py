@@ -1,5 +1,7 @@
 from flask import Flask, request, flash, redirect, url_for
 import os
+import sys
+sys.path.insert(0, './src')
 import Translation
 
 # Where to go after running http://127.0.0.1:5000/upload
@@ -7,6 +9,10 @@ UPLOAD_FOLDER = 'C:/Users/SM_Ga/Documents/Projects/Translation/uploads'
 ALLOWED_EXTENSIONS = {'mp4', 'mp3', 'm4a'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/')
+def index():
+    return open('templates/index.html').read()
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -40,5 +46,6 @@ def upload_file():
     </form>
     '''
 
-
+if __name__ == '__main__':
+    app.run(port=5000)
 
