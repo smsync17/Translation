@@ -8,6 +8,10 @@ ALLOWED_EXTENSIONS = {'mp4', 'mp3', 'm4a'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.route('/')
+def index():
+    return open('templates/index.html').read()
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -40,5 +44,6 @@ def upload_file():
     </form>
     '''
 
-
+if __name__ == '__main__':
+    app.run(port=5000)
 

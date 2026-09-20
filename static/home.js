@@ -89,7 +89,7 @@ async function calling(event){
     var data = new FormData();
     data.append('file', input.files[0]);
 
-    const response = await fetch('/upload', {
+    const response = await fetch('http://localhost:5000/upload', {
         method: 'POST',
         body: data
     });

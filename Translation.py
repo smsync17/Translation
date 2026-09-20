@@ -7,7 +7,7 @@ from deep_translator import MyMemoryTranslator
 import requests
 import json
 
-
+@property
 def process_audio(audio_file_path):
     # Load the model
     model = whisper.load_model("base")
