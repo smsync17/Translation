@@ -52,7 +52,7 @@ function press(){
 }
 
 async function loadJson(file){
-    const response = await fetch(file);
+    const response = await fetch('/static/translated.json');
     const data = await response.json();
     console.log("Loaded data:", data)
     myDisplayer(data);
@@ -98,4 +98,6 @@ async function calling(event){
     myDisplayer(json_data);
 }
 
-
+function loadTrans(){
+    loadJson("translated.json");
+}
