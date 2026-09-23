@@ -1,7 +1,7 @@
 from flask import Flask, request, flash, redirect, url_for
 import os
-import sys
-sys.path.insert(0, './src')
+# import sys
+# sys.path.insert(0, './src')
 import Translation
 
 # Where to go after running http://127.0.0.1:5000/upload
@@ -13,6 +13,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/')
 def index():
     return open('templates/index.html').read()
+
+@app.route('/translation.html')
+def index():
+    return open('templates/translation.html').read()
 
 def allowed_file(filename):
     return '.' in filename and \
