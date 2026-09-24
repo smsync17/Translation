@@ -14,8 +14,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return open('templates/index.html').read()
 
-@app.route('/translation.html')
-def index():
+@app.route('/translation')
+def translator():
     return open('templates/translation.html').read()
 
 def allowed_file(filename):
