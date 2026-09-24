@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- python -m http.server 8000 -->
+  <link rel="stylesheet" href="../static/styles.css">
+  <script src="../static/home.js"></script>
+</head>
+<body>
+
+<h1>Transcript Translation</h1>
+
+
+
+<!-- <div class="container">
+  <div>
+    <p id="demo"></p>
+    <button onclick="press()"> Tester button </button>
+    <script> document.getElementById("demo").innerHTML = "wow"; </script>
+    <p id="count" style="font-size:40px;">0</p>
+  </div>
+  <div>
+    <button onclick="increaseCount()">+</button>
+    <button onclick="decreaseCount()">-</button>
+  </div>
+  <div>
+    <button onclick="resetCount()">Reset</button>
+    <button onclick="saveCount()">Save</button>
+    <button onclick="loadCount()">Load</button>
+  </div>
+</div> -->
+<div class="container">
+  <div>
+    <form onsubmit="calling(event)">
+      <label>Select file to upload</label>
+      <input type="file">
+      <button type="submit">Convert</button>
+      <button type="button" onclick="loadTrans()">Load</button>
+    </form>
+  </div>
+  <div>
+    <table>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
