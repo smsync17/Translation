@@ -1,6 +1,7 @@
 let count = 0;
 let pressed = false;
 
+alert("Need this to know I reloaded");
 
 // function updateCount(){
 //     document.getElementById("count").innerHTML = count;
@@ -82,6 +83,7 @@ function myDisplayer(data) {
 }
 
 async function calling(event){
+    document.querySelector('.loader').removeAttribute('hidden');
     event.preventDefault();
     var input = document.querySelector('input[type="file"]');
     var data = new FormData();
@@ -94,6 +96,7 @@ async function calling(event){
 
     const json_data = await response.json();
     myDisplayer(json_data);
+    document.querySelector('.loader').setAttribute('hidden', '');
 }
 
 function loadTrans(){
