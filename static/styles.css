@@ -102,6 +102,10 @@ table, th, td {
   top: calc(60 * var(--size));
 }
 
+.loader[hidden] {
+  display: none !important;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
