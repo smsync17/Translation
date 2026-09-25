@@ -1,6 +1,7 @@
 let count = 0;
 let pressed = false;
 
+alert("Need this to know I reloaded");
 
 // function updateCount(){
 //     document.getElementById("count").innerHTML = count;
