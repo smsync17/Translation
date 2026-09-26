@@ -114,3 +114,12 @@ table, th, td {
     transform: rotate(360deg);
   }
 }
+
+
+footer {
+  background-color: rgb(17, 61, 89);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-family: Calibri;
+}
