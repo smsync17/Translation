@@ -35,8 +35,8 @@
   <div>
     <form onsubmit="calling(event)">
       <label>Select file to upload</label>
-      <input type="file">
-      <button type="submit">Convert</button>
+      <input type="file" onchange="enableButton()">
+      <button type="submit" class="button" disabled>Convert</button>
       <button type="button" onclick="loadTrans()">Load</button>
     </form>
   </div>
@@ -48,7 +48,7 @@
   </div>
 </div>
 <footer>
-  <label>Footer</label>
+  <label>A project made by Samrawi Mehreteab</label>
 </footer>
 </body>
 </html>
