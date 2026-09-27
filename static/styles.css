@@ -22,7 +22,7 @@ button {
     background: rgb(134, 223, 255);
 }
 
-.disabledbtn {
+button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

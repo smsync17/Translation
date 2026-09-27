@@ -99,6 +99,17 @@ async function calling(event){
     document.querySelector('.loader').setAttribute('hidden', '');
 }
 
+function enableButton(){
+    var input = document.querySelector('input[type="file"]');
+    var button = document.querySelector('button[type="submit"]');
+    if (input.files[0]){
+        button.removeAttribute('disabled');
+    }
+    else{
+        button.setAttribute('disabled',' ');
+    }
+}
+
 function loadTrans(){
     loadJson("translated.json");
 }

@@ -35,9 +35,8 @@
   <div>
     <form onsubmit="calling(event)">
       <label>Select file to upload</label>
-      <input type="file">
-      <button type="submit" >Convert</button>
-      <button class="button disabledbtn" disabled>Disabled Button</button>
+      <input type="file" onchange="enableButton()">
+      <button type="submit" class="button" disabled>Convert</button>
       <button type="button" onclick="loadTrans()">Load</button>
     </form>
   </div>
