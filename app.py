@@ -18,6 +18,10 @@ def index():
 def translator():
     return open('templates/translation.html').read()
 
+@app.route('/about')
+def about():
+    return open('templates/about.html').read()
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
