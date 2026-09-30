@@ -157,3 +157,7 @@ ul.topnav li a:hover {
   background-color: #dddddd;
   color: black;
 }
+
+label{
+  color: #dddddd;
+}
