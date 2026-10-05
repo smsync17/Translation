@@ -95,7 +95,7 @@ async function calling(event){
     });
 
     const json_data = await response.json();
-    myDisplayer(json_data);
+    myDisplayer(json_data['bigram_translations']);
     document.querySelector('.loader').setAttribute('hidden', '');
 }
 

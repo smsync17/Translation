@@ -160,5 +160,8 @@ def process_audio(audio_file_path):
     with open("translated.json", "w") as f:
         f.write(translated_json)
 
-    return cleaned
+    return {
+        'phonetic_matches': dict(second_pot),
+        'bigram_translations': cleaned
+    }
 
