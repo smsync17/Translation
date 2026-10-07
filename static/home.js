@@ -65,7 +65,7 @@ async function loadJson(file){
 
 // Display data in a two-column table (English phrase and Arabic translation)
 function myDisplayer(data) {
-    bi_gram = data;
+    bi_gram = data['bigram_translations'];
     const original = Object.keys(bi_gram);
     const newer = Object.values(bi_gram);
     
@@ -84,7 +84,20 @@ function myDisplayer(data) {
         tbody.innerHTML += tr;
     }
     
+    var tbody2 = document.getElementById('tbody');
+    similarity = data['phonetic_matches'];
+    const second_pot = Object.keys(similarity);
 
+    tbody2.innerHTML = ""; 
+
+    var tr2 = "";
+    for (var i = 0; i < 10; i++) {
+        tr2 = "";
+        tr2 += "<tr>";
+        tr2 += "<td>" + second_pot[i] + "</td>";
+        tr2 += "</tr>";
+        tbody2.innerHTML += tr2;
+    }
     
 }
 
