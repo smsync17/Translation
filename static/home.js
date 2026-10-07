@@ -84,7 +84,7 @@ function myDisplayer(data) {
         tbody.innerHTML += tr;
     }
     
-    var tbody2 = document.getElementById('tbody');
+    var tbody2 = document.getElementById('tbody2');
     similarity = data['phonetic_matches'];
     const second_pot = Object.keys(similarity);
 
