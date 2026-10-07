@@ -50,6 +50,9 @@ alert("Need this to know I reloaded");
 //     updateCount();
 // }
 
+
+
+// Fetch and display previously saved translations from static folder
 async function loadJson(file){
     const response = await fetch('/static/translated.json');
     const data = await response.json();
@@ -59,9 +62,12 @@ async function loadJson(file){
 
 // loadJson("translated.json");
 
+
+// Display data in a two-column table (English phrase and Arabic translation)
 function myDisplayer(data) {
-    const original = Object.keys(data);
-    const newer = Object.values(data);
+    bi_gram = data['bigram_translations'];
+    const original = Object.keys(bi_gram);
+    const newer = Object.values(bi_gram);
     
     var tbody = document.getElementById('tbody');
     
@@ -78,10 +84,24 @@ function myDisplayer(data) {
         tbody.innerHTML += tr;
     }
     
+    var tbody2 = document.getElementById('tbody2');
+    similarity = data['phonetic_matches'];
+    const second_pot = Object.keys(similarity);
 
+    tbody2.innerHTML = ""; 
+
+    var tr2 = "";
+    for (var i = 0; i < 10; i++) {
+        tr2 = "";
+        tr2 += "<tr>";
+        tr2 += "<td>" + second_pot[i] + "</td>";
+        tr2 += "</tr>";
+        tbody2.innerHTML += tr2;
+    }
     
 }
 
+// Handle file upload form submission, send to backend, and display results
 async function calling(event){
     document.querySelector('.loader').removeAttribute('hidden');
     event.preventDefault();
@@ -95,10 +115,12 @@ async function calling(event){
     });
 
     const json_data = await response.json();
-    myDisplayer(json_data['bigram_translations']);
+    myDisplayer(json_data);
     document.querySelector('.loader').setAttribute('hidden', '');
 }
 
+
+// Enable submit button when a file is selected, disable when empty
 function enableButton(){
     var input = document.querySelector('input[type="file"]');
     var button = document.querySelector('button[type="submit"]');
@@ -110,6 +132,7 @@ function enableButton(){
     }
 }
 
+// Load saved translations from static JSON file
 function loadTrans(){
     loadJson("translated.json");
 }
