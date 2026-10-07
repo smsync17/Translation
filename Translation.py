@@ -50,11 +50,11 @@ def process_audio(audio_file_path):
     count = 0
     # Comparing every transcribed word with dictionary and applying fuzz ratio
     for word in range(len(words)):
-        for dict in range(len(pure)):
+        for dict_idx in range(len(pure)):
             # if metaphone.phonetics(words[word])== metaphone.phonetics(pure[dict])
             try:
                 ref_word = refined.phonetics(words[word])
-                ref_dict = refined.phonetics(pure[dict])
+                ref_dict = refined.phonetics(pure[dict_idx])
                 if ref_word == ref_dict:
                     count = count + 1
                     if ref_word in ref_hes:
@@ -64,7 +64,7 @@ def process_audio(audio_file_path):
                             dict_counter.append("*confused*")
                         else:
                             # prints transcribed word with its dictionary counterpart
-                            dict_counter.append(pure[dict])
+                            dict_counter.append(pure[dict_idx])
                     # print(f"{words[word]} and {pure[dict]}")
             except:
                 pass
