@@ -87,6 +87,7 @@ function myDisplayer(data) {
     var tbody2 = document.getElementById('tbody2');
     similarity = data['phonetic_matches'];
     const second_pot = Object.keys(similarity);
+    const counter = Object.values(similarity);
 
     tbody2.innerHTML = ""; 
 
@@ -95,6 +96,7 @@ function myDisplayer(data) {
         tr2 = "";
         tr2 += "<tr>";
         tr2 += "<td>" + second_pot[i] + "</td>";
+        tr2 += "<td>" + counter[i] + "</td>";
         tr2 += "</tr>";
         tbody2.innerHTML += tr2;
     }
