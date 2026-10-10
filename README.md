@@ -6,3 +6,4 @@ Attempting to create a program that:
   Merge similar words and add up their counts
   Apply translation to most common words and phrases
   Create a website using HTML, CSS AND JavaScript
+  Optimisation of the logic algorithm
