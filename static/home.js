@@ -54,9 +54,15 @@ alert("Need this to know I reloaded");
 
 // Fetch and display previously saved translations from static folder
 async function loadJson(file){
-    const response = await fetch('/static/translated.json');
-    const data = await response.json();
-    console.log("Loaded data:", data)
+    const response = await fetch('/static/second.json');
+    const response2 = await fetch('/static/translated.json');
+    const data1 = await response.json();
+    const data2 = await response2.json();
+    console.log("Loaded data:", data1)
+    console.log("Loaded data:", data2)
+    const data = {'phonetic_matches': data1,
+        'bigram_translations': data2
+    }
     myDisplayer(data);
 }
 
@@ -136,5 +142,5 @@ function enableButton(){
 
 // Load saved translations from static JSON file
 function loadTrans(){
-    loadJson("translated.json");
+    loadJson();
 }
