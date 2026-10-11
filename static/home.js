@@ -56,11 +56,11 @@ alert("Need this to know I reloaded");
 async function loadJson(file){
     const response = await fetch('/static/second.json');
     const response2 = await fetch('/static/translated.json');
-    const data = await response.json();
+    const data1 = await response.json();
     const data2 = await response2.json();
-    console.log("Loaded data:", data)
+    console.log("Loaded data:", data1)
     console.log("Loaded data:", data2)
-    data = {'phonetic_matches': data,
+    const data = {'phonetic_matches': data1,
         'bigram_translations': data2
     }
     myDisplayer(data);
