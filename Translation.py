@@ -86,7 +86,7 @@ def process_audio(audio_file_path):
 
 
     unique_frequency = Counter(words).most_common(3)
-    second_pot = Counter(dict_counter).most_common(10)
+    second_pot = Counter(dict_counter).most_common(15)
     # and a separate counter for fuzz ratio-ed words
 
 
@@ -155,10 +155,15 @@ def process_audio(audio_file_path):
     cleaned = {k: (v.replace('#', '') if isinstance(v, str) else v) for k, v in trans.items()}
 
     translated_json  = json.dumps(cleaned)
+    second_pot = dict(second_pot)
+    second = json.dumps(second_pot)
 
 
     with open("translated.json", "w") as f:
         f.write(translated_json)
+
+    with open("second.json", "w") as f:
+        f.write(second)
 
     return {
         'phonetic_matches': dict(second_pot),

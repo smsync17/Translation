@@ -136,5 +136,8 @@ function enableButton(){
 
 // Load saved translations from static JSON file
 function loadTrans(){
-    loadJson("translated.json");
+    data = {'phonetic_matches': "second.json",
+        'bigram_translations': "translation.json"
+    }
+    loadJson(data);
 }
