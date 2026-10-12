@@ -98,7 +98,7 @@ function myDisplayer(data) {
     tbody2.innerHTML = ""; 
 
     var tr2 = "";
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < second_pot.length; i++) {
         tr2 = "";
         tr2 += "<tr>";
         tr2 += "<td>" + second_pot[i] + "</td>";
