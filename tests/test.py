@@ -15,17 +15,14 @@ print(refined.phonetics('too'))
 
 no_punc = str.maketrans("", "", string.punctuation)
 # "maketrans" creates a mapping to remove all punctuation
-wordset = []
-words = wordset.translate(no_punc)
-# now all the punctuation is removed
-words = words.lower().split()
+words = ["yo","gang","yo","son","bro","yo","yo","son"]
 
 
 refined = RefinedSoundex()
 
 
 
-pure_dict = open("cleaned_wordlist.txt")
+pure_dict = open("../cleaned_wordlist.txt")
 pure = pure_dict.read().split()
 dict_counter = []
 
@@ -65,7 +62,7 @@ for word in range(len(words)):
 
 temp_count = []
 bi_gram = []
-filtered_counts = {word: count for word, count in Counter(words).items() if count >= 5}
+filtered_counts = {word: count for word, count in Counter(words).items() if count >= 2}
 for source in filtered_counts:
     for word in range(len(words)):
         if source == words[word]:
@@ -73,7 +70,7 @@ for source in filtered_counts:
                 temp_count.append(source + " " + words[word+1])
             except:
                 pass
-    filtered_bi_gram = {word: count for word, count in Counter(temp_count).items() if count >= 3}
+    filtered_bi_gram = {word: count for word, count in Counter(temp_count).items() if count >= 2}
     temp_count = []
     if filtered_bi_gram:
         bi_gram.append(filtered_bi_gram)
@@ -81,3 +78,12 @@ for source in filtered_counts:
 
 unique_frequency = Counter(words).most_common(3)
 second_pot = Counter(dict_counter).most_common(15)
+
+print(count)
+print(words)
+
+print(unique_frequency)
+print(second_pot)
+
+print(f"the filtered {filtered_counts}")
+print(f"the bigrams {bi_gram}")
