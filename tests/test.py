@@ -64,12 +64,9 @@ temp_count = []
 bi_gram = []
 filtered_counts = {word: count for word, count in Counter(words).items() if count >= 2}
 for source in filtered_counts:
-    for word in range(len(words)):
+    for word in range(len(words) - 1):
         if source == words[word]:
-            try:
-                temp_count.append(source + " " + words[word+1])
-            except:
-                pass
+            temp_count.append(source + " " + words[word+1])
     filtered_bi_gram = {word: count for word, count in Counter(temp_count).items() if count >= 2}
     temp_count = []
     if filtered_bi_gram:
