@@ -7,10 +7,11 @@ from deep_translator import MyMemoryTranslator
 import requests
 import json
 
+# Load the model
+model = whisper.load_model("base")
+
 # @property
 def process_audio(audio_file_path):
-    # Load the model
-    model = whisper.load_model("base")
 
     # Transcribe test file
     # result = model.transcribe("C:/Users/SM_Ga/Documents/Sound Recordings/Test_7.m4a", language="en")
