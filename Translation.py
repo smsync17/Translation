@@ -102,7 +102,8 @@ def process_audio(audio_file_path):
 
     # Currently prints the two most common used words
     print(unique_frequency)
-    print(second_pot)
+    print(f"Second pot {second_pot}")
+    
 
     # print(refined.phonetics('hmm'))
     # print(refined.phonetics('hmmm'))
