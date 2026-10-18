@@ -48,27 +48,26 @@ def process_audio(audio_file_path):
     for con in confused:
         ref_con.append(refined.phonetics(con))
 
+    word_counts = Counter(words)
+    
     count = 0
     # Comparing every transcribed word with dictionary and applying fuzz ratio
-    for word in range(len(words)):
-        for dict_idx in range(len(pure)):
-            # if metaphone.phonetics(words[word])== metaphone.phonetics(pure[dict])
-            try:
-                ref_word = refined.phonetics(words[word])
-                ref_dict = refined.phonetics(pure[dict_idx])
-                if ref_word == ref_dict:
-                    count = count + 1
-                    if ref_word in ref_hes:
-                        dict_counter.append("*hesitation*")
-                    else:
-                        if ref_word in ref_con:
-                            dict_counter.append("*confused*")
-                        else:
-                            # prints transcribed word with its dictionary counterpart
-                            dict_counter.append(pure[dict_idx])
-                    # print(f"{words[word]} and {pure[dict]}")
-            except:
-                pass
+    for word, occurrences in word_counts.items():
+        ref_word = refined.phonetics(word)
+        if ref_word == "":
+            continue
+        for dict_idx in pure:
+            ref_dict = refined.phonetics(dict_idx)
+            if ref_word == ref_dict:
+                count = count + occurrences
+                if ref_word in ref_hes:
+                    dict_counter.extend(["*hesitation*"] * occurrences)
+                elif ref_word in ref_con:
+                    dict_counter.extend(["*confused*"] * occurrences)
+                else:
+                    # prints transcribed word with its dictionary counterpart
+                    dict_counter.extend([dict_idx] * occurrences)
+                # print(f"{words[word]} and {pure[dict]}")
 
     temp_count = []
     bi_gram = []
