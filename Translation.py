@@ -9,6 +9,8 @@ import json
 
 # Load the model
 model = whisper.load_model("base")
+pure_dict = open("cleaned_wordlist.txt")
+pure = pure_dict.read().split()
 
 # @property
 def process_audio(audio_file_path):
@@ -32,8 +34,7 @@ def process_audio(audio_file_path):
 
 
 
-    pure_dict = open("cleaned_wordlist.txt")
-    pure = pure_dict.read().split()
+    
     dict_counter = []
 
     # print refine check all of these, then remove duplicates
@@ -49,7 +50,7 @@ def process_audio(audio_file_path):
         ref_con.append(refined.phonetics(con))
 
     word_counts = Counter(words)
-    
+
     count = 0
     # Comparing every transcribed word with dictionary and applying fuzz ratio
     for word, occurrences in word_counts.items():
