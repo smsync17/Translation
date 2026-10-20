@@ -24,6 +24,18 @@ refined = RefinedSoundex()
 
 pure_dict = open("../cleaned_wordlist.txt")
 pure = pure_dict.read().split()
+
+d = {}
+
+for sound in pure:
+    key = refined.phonetics(sound)
+    if key not in d:
+        d[key] = [sound]
+    else:
+        d[key].append(sound)
+
+print(f"you come look at this {len(d)}")
+
 dict_counter = []
 
 # print refine check all of these, then remove duplicates
