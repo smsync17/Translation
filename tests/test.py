@@ -58,9 +58,8 @@ for word, occurrences in word_counts.items():
     ref_word = refined.phonetics(word)
     if ref_word == "":
         continue
-    for dict_idx in pure:
-        ref_dict = refined.phonetics(dict_idx)
-        if ref_word == ref_dict:
+    else:
+        if ref_word in d:
             count = count + occurrences
             if ref_word in ref_hes:
                 dict_counter.extend(["*hesitation*"] * occurrences)
@@ -68,7 +67,8 @@ for word, occurrences in word_counts.items():
                 dict_counter.extend(["*confused*"] * occurrences)
             else:
                 # prints transcribed word with its dictionary counterpart
-                dict_counter.extend([dict_idx] * occurrences)
+                dict_counter.extend(d[ref_word] * occurrences)
+                #print(f"hmm   {d[ref_word]}")
             # print(f"{words[word]} and {pure[dict]}")
 
 temp_count = []
