@@ -67,7 +67,8 @@ for word, occurrences in word_counts.items():
                 dict_counter.extend(["*confused*"] * occurrences)
             else:
                 # prints transcribed word with its dictionary counterpart
-                dict_counter.extend([d] * occurrences)
+                dict_counter.extend(d[ref_word] * occurrences)
+                #print(f"hmm   {d[ref_word]}")
             # print(f"{words[word]} and {pure[dict]}")
 
 temp_count = []
