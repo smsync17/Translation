@@ -9,8 +9,20 @@ import json
 
 # Load the model
 model = whisper.load_model("base")
+
+refined = RefinedSoundex()
+
 pure_dict = open("cleaned_wordlist.txt")
 pure = pure_dict.read().split()
+
+d = {}
+
+for sound in pure:
+    key = refined.phonetics(sound)
+    if key not in d:
+        d[key] = [sound]
+    else:
+        d[key].append(sound)
 
 # @property
 def process_audio(audio_file_path):
@@ -30,7 +42,7 @@ def process_audio(audio_file_path):
     words = words.lower().split()
 
 
-    refined = RefinedSoundex()
+
 
 
 
@@ -57,9 +69,8 @@ def process_audio(audio_file_path):
         ref_word = refined.phonetics(word)
         if ref_word == "":
             continue
-        for dict_idx in pure:
-            ref_dict = refined.phonetics(dict_idx)
-            if ref_word == ref_dict:
+        else:
+            if ref_word in d:
                 count = count + occurrences
                 if ref_word in ref_hes:
                     dict_counter.extend(["*hesitation*"] * occurrences)
@@ -67,7 +78,8 @@ def process_audio(audio_file_path):
                     dict_counter.extend(["*confused*"] * occurrences)
                 else:
                     # prints transcribed word with its dictionary counterpart
-                    dict_counter.extend([dict_idx] * occurrences)
+                    dict_counter.extend(d[ref_word] * occurrences)
+                    #print(f"hmm   {d[ref_word]}")
                 # print(f"{words[word]} and {pure[dict]}")
 
     temp_count = []
