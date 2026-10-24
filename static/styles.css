@@ -13,11 +13,6 @@ p {
   color: rgb(255, 174, 60);
 }
 
-p1 {
-  font-family: verdana;
-  font-size: 20px;
-  color: rgb(255, 211, 149);
-}
 
 button {
     display: flex;
